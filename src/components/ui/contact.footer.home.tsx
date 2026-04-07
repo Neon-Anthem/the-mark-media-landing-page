@@ -4,14 +4,10 @@ import { motion } from "motion/react";
 export default function ContactFooter() {
   return (
     <section className="w-full flex items-center justify-center bg-black py-38">
-      <div className="flex items-center justify-center w-full container">
-        <h3 className="text-white/80 md:text-4xl font-title font-bold">
-          <span className="text-brand-6 italic">&quot;</span> The Art of{" "}
-          <span className="text-brand-6 italic">Strategic</span> Marketing:
-          Let&apos;s Create Your Masterpiece Together
-          <span className="text-brand-6 italic">&quot;</span>
-        </h3>
-      </div>
+      <div
+        className="flex items-center justify-center w-max mx-auto "
+        data-block="contain"
+      ></div>
     </section>
   );
 }

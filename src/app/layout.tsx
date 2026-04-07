@@ -4,10 +4,10 @@ import Footer from "@/components/ui/footer";
 import { fontSpaceGrotesk, geistMono, openSauceTwoFont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import "./globals.css";
 import { Geist } from "next/font/google";
+import "./globals.css";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "The Mark Media - Elevate Your Brand with Strategic Digital Marketing",

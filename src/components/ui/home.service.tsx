@@ -149,7 +149,7 @@ export default function ServicesHome() {
   }, [setText]);
 
   return (
-    <section className="bg-black sm:py-24 py-12">
+    <section className="bg-background sm:py-24 py-12">
       <div className="container mx-auto space-y-12 px-4 sm:px-0">
         <Title />
         {/*  */}
@@ -174,7 +174,7 @@ function Title() {
       <h3 className="text-2xl sm:text-6xl md:text-8xl font-title font-regular tracking-wider uppercase">
         Services
       </h3>
-      <motion.span
+      {/* <motion.span
         transition={{
           // ease: [0.621, -0.029, 0.483, 0.997],
           ease: "circInOut",
@@ -189,10 +189,10 @@ function Title() {
           // x: ["-100vh", 0],
           opacity: [0, 1],
         }}
-        className="text-6xl sm:text-6xl md:text-9xl leading-none text-brand-6"
+        className="text-6xl sm:text-6xl md:text-9xl leading-none text-primary"
       >
         ✦
-      </motion.span>
+      </motion.span> */}
     </div>
   );
 }
@@ -238,7 +238,7 @@ function ServiceGroup({
   }, [isInView, controls]);
 
   return (
-    <div className="w-full py-8 border-b-2 border-brand-6/20">
+    <div className="w-full py-8 border-b-2 border-primary/20">
       <h2 className="text-2xl tracking-widest mb-6 text-center md:text-start">
         {groupTitle}
       </h2>
@@ -268,7 +268,7 @@ function ServiceCard({
 }) {
   return (
     <motion.div
-      className="border border-brand-6/30 flex flex-col justify-between rounded-2xl p-3 gap-4 flex-1 min-w-75 max-w-100"
+      className="border border-primary/50 flex flex-col justify-between rounded-2xl p-3 gap-4 flex-1 min-w-75 max-w-100"
       variants={itemVariants}
       transition={{
         type: "spring",
@@ -282,7 +282,7 @@ function ServiceCard({
         {tag.map((t) => (
           <span
             key={t}
-            className="rounded-full border border-foreground/40 px-3 py-0.5 text-sm text-foreground/60"
+            className="rounded-full border border-primary/50 px-3 py-0.5 text-sm text-primary/80"
           >
             {t}
           </span>

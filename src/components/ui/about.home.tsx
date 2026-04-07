@@ -1,15 +1,25 @@
-import { IconArrowUpRight } from "@tabler/icons-react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import Button from "./button";
-import CurvedLoop from "./curved-loop";
+import { CTAButton } from "./cta.button";
+import { Section } from "./section";
 import { SectionTitle } from "./section-title";
 import { TextAnimate } from "./text-animated";
 
 export default function AboutSection() {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+
   return (
-    <section className="relative bg-background" ref={containerRef}>
+    <Section
+      className="relative px-2 sm:px-8 min-h-[150vh] bg-background text-foreground z-10"
+      ref={containerRef}
+    >
       {/* Video Background */}
 
       {/* Video Background */}
@@ -17,40 +27,39 @@ export default function AboutSection() {
       {/* End Title */}
       {/* Content */}
 
-      <div className="space-y-4 text-center sm:text-start">
-        <SectionTitle className="sm:w-[70%] text-center sm:text-start mx-auto">
-          About Us
+      <motion.div
+        className="sticky top-1/2 -translate-y-1/2 left-0 right-0 space-y-4 text-center sm:text-start"
+        style={{
+          opacity,
+        }}
+      >
+        <SectionTitle
+          subheadline="About Us"
+          className="text-center sm:text-start mx-auto"
+        >
+          Strategic Growth Partners
         </SectionTitle>
-        <div className="" data-block="contain">
-          <TextAnimate
-            className="text-base sm:text-2xl text-foreground/90 font-medium leading-relaxed w-[70%] sm:w-[70%] mx-auto"
-            duration={3}
-            animation="blurInUp"
-          >
-            At The Mark Media, our goal isn&apos;t just to provide
-            services—it&apos;s to strategize, ease, and optimize your sales
-            through intelligent planning. We believe in building lasting
-            relationships with your audience, focusing on genuine brand loyalty
-            over pure advertisements.
+        <div
+          className="text-base sm:text-2xl font-medium sm:font-normal leading-relaxed mx-auto space-y-4"
+          data-block="contain"
+        >
+          <TextAnimate className="" duration={0.8} animation="blurInUp">
+            At The Mark Media, our goal is to strategize, ease, and optimize
+            your sales through intelligent planning.
+          </TextAnimate>
+          <TextAnimate delay={0.8} duration={0.8} animation="blurInUp">
+            We believe in building lasting relationships with your audience,
+            focusing on genuine brand loyalty over pure advertisements.
           </TextAnimate>
 
-          <div className="flex items-center justify-center gap-3 md:mt-16">
-            <Button icon={<IconArrowUpRight className="text-black" />}>
-              Connect With Us
-            </Button>
+          {/* CTA */}
+          <div className="hidden sm:flex items-center justify-center sm:justify-start gap-3 md:mt-16">
+            <CTAButton>Learn About Us</CTAButton>
           </div>
+          {/* End Cta */}
         </div>
-
-        <div className="overflow-hidden absolute bottom-0 left-0 right-0 h-10">
-          <CurvedLoop
-            marqueeText="The ✦ Mark ✦ Media ✦"
-            curveAmount={0}
-            interactive={false}
-            className="mix-blend-difference bg-blue-500 h-fit"
-          />
-        </div>
-      </div>
+      </motion.div>
       {/* End Content */}
-    </section>
+    </Section>
   );
 }

@@ -1,9 +1,11 @@
 "use client";
 
-import { IconArrowUpRight, IconX } from "@tabler/icons-react";
+import { IconMenu, IconX } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
+import LogoLettermark from "../../../public/assets/tmm-logo-lettermark";
+import { CTAButton } from "./cta.button";
 
 interface INavLink {
   href: string;
@@ -21,7 +23,7 @@ export default function DefaultNav() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <>
+    <div className="">
       {/* Mobile Nav */}
 
       <AnimatePresence key={"mobile-nav"}>
@@ -94,18 +96,7 @@ export default function DefaultNav() {
         <div className="flex items-center justify-between gap-24 z-50 w-full h-12 px-4 sm:px-12">
           <BrandLogo />
 
-          <div className="xl:hidden flex items-center justify-center">
-            <button
-              className=""
-              onClick={() => {
-                setIsOpen((prev) => !prev);
-              }}
-            >
-              <IconX className="size-5" />
-            </button>
-          </div>
-
-          <div className="hidden xl:block">
+          <div className="hidden md:block">
             <ul className="flex space-x-8">
               {navLinks?.map((item) => {
                 return (
@@ -118,31 +109,29 @@ export default function DefaultNav() {
           </div>
 
           {/* Book Now */}
-
-          <div className="hidden xl:block isolate">
-            <motion.button
-              whileHover={{
-                scale: 1.05,
-              }}
-              className="rounded-full px-4 py-2 -mr-2 -my-0.5 font-medium flex items-center gap-3 text-sm bg-black text-brand-6 ring isolate mix-blend-difference"
-            >
-              <span className="bg-brand-6 rounded-full -m-1 p-1 -ml-2.5">
-                <IconArrowUpRight className="size-4 text-foreground" />
-              </span>
-              Let&apos;s Talk
-            </motion.button>
-          </div>
+          <div className="w-32"></div>
           {/* Book Now */}
         </div>
       </div>
-    </>
+      <div className="fixed top-0 right-0 px-2 sm:px-6 pt-2 w-max z-200 flex items-center gap-2 sm:gap-6">
+        <span
+          className="flex md:hidden mix-blend-difference"
+          onClick={() => {
+            setIsOpen((prev) => !prev);
+          }}
+        >
+          <IconMenu className="size-4 sm:size-6" />
+        </span>
+        <CTAButton className="text-base py-0.5 outline outline-background [&>span]:-mr-1.5" />
+      </div>
+    </div>
   );
 }
 
 export const BrandLogo = () => (
   <div className="">
-    <Link href="/">
-      <h4 className="text-xl text-foreground font-medium">The Mark Media</h4>
+    <Link href="/" className="text-white stroke-1 stroke-white fill-white">
+      {/* <h4 className="text-xl text-foreground font-medium">The Mark Media</h4> */}
       {/* <Image
         src={"/logox.png"}
         alt="Brand Logo"
@@ -150,6 +139,9 @@ export const BrandLogo = () => (
         height={50}
         className="w-32 mix-blend-difference"
       /> */}
+      <div className="*:w-32 h-auto">
+        <LogoLettermark />
+      </div>
     </Link>
   </div>
 );

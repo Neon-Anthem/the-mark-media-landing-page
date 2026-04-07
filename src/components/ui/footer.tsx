@@ -6,7 +6,7 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
-import TextMaskSection from "./text-mask.home";
+import FooterCTASection from "./footer-cta.home";
 
 interface IFooterLinks {
   title: string;
@@ -33,13 +33,37 @@ const IndustriesLinks: IFooterLinks[] = [
   { title: "Education", href: "#" },
 ];
 
+export function Logo() {
+  return (
+    <div className="relative">
+      {/* <div className="absolute left-0 right-0 top-1/4 mix-blend-difference text-3xl! sm:text-5xl! md:text-9xl!">
+        <CurvedLoop
+          className=""
+          curveAmount={0}
+          direction="right"
+          interactive={false}
+          // marqueeText="Strategy • Performance • Measureable •"
+          marqueeText="  #  "
+          speed={0.8}
+        />
+      </div> */}
+      <h1 className="w-max mx-auto text-3xl sm:text-5xl md:text-9xl uppercase font-black text-primary">
+        The Mark Media
+      </h1>
+    </div>
+  );
+}
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div>
-      <TextMaskSection />
-      <footer className="mt-auto w-full py-10 px-4 sm:px-6 lg:px-8 bg-black border-t border-brand-6/30">
+    <div className="mt-16">
+      <FooterCTASection />
+
+      <Logo />
+      {/* <TextMaskSection /> */}
+      <footer className="mt-auto w-full py-10 px-4 sm:px-6 lg:px-8 bg-background border-t border-primary/30">
         <div className="container mx-auto">
           {/* Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-10">
@@ -94,7 +118,7 @@ export default function Footer() {
           </div>
           {/* End Grid */}
 
-          <div className="pt-5 mt-5 border-t border-brand-6">
+          <div className="pt-5 mt-5 border-t border-primary">
             <div className="sm:flex sm:justify-between sm:items-center">
               <div className="flex flex-wrap items-center gap-3">
                 <div className="space-x-4 text-sm">

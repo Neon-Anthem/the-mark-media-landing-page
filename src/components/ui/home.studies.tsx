@@ -1,6 +1,9 @@
 "use client";
 
-import { motion } from "motion/react";
+import { CASE_STUDIES } from "@/data/case-studies.data";
+import { motion, useAnimation, useInView } from "motion/react";
+import { useEffect, useRef } from "react";
+import { WorkHomeCard } from "./work.home";
 
 function Title() {
   return (
@@ -8,9 +11,9 @@ function Title() {
       <h3 className="text-2xl sm:text-6xl md:text-8xl font-title font-regular tracking-wider uppercase">
         Case Studies
       </h3>
-      <motion.span
+      {/* <motion.span
         transition={{
-          // ease: [0.621, -0.029, 0.483, 0.997],
+          // ease: [0.621, -0.029, 0.483, 0.997],a
           ease: "circInOut",
           type: "tween",
           stiffness: 1,
@@ -23,10 +26,10 @@ function Title() {
           // x: ["-100vh", 0],
           opacity: [0, 1],
         }}
-        className="text-6xl sm:text-6xl md:text-9xl leading-none text-brand-6"
+        className="text-6xl sm:text-6xl md:text-9xl leading-none text-primary"
       >
         ✦
-      </motion.span>
+      </motion.span> */}
     </div>
   );
 }
@@ -49,12 +52,45 @@ interface ICaseStudy {
   projects: IProject[];
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+
+    transition: {
+      // Delay the start of the children's animations
+      delayChildren: 0.1,
+      // Stagger each child's animation by 0.1 seconds
+      staggerChildren: 0.08,
+    },
+  },
+};
+
 export default function CaseStudiesSection() {
+  const ref = useRef(null);
+  // Detect if the element is in the viewport
+  const isInView = useInView(ref, { once: true, amount: 0.5 }); // 'once: true' means it only animates on first view
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [isInView, controls]);
   return (
-    <section className="container">
+    <section className="container" ref={ref}>
       <Title />
       {/* Page Content */}
-      <div></div>
+      <motion.div
+        initial="hidden"
+        animate={controls}
+        variants={containerVariants}
+        className="flex flex-wrap justify-center gap-8 my-16"
+      >
+        {CASE_STUDIES?.map((work, index) => {
+          return <WorkHomeCard {...work} key={index} />;
+        })}
+      </motion.div>
     </section>
   );
 }

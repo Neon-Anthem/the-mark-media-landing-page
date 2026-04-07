@@ -4,9 +4,9 @@ import { useSetAtom } from "jotai";
 import { useEffect } from "react";
 import AboutSection from "../ui/about.home";
 import CompaniesSection from "../ui/companies.home";
-import ContactFooter from "../ui/contact.footer.home";
 import HeroSection from "../ui/hero.home";
-import WorkSection from "../ui/work.home";
+import HookHomeSection from "../ui/hook.home";
+import { WorkHomePage } from "../ui/work.home";
 
 export default function LandingPage() {
   const setText = useSetAtom(footerTextAtom);
@@ -19,10 +19,9 @@ export default function LandingPage() {
     <>
       <HeroSection />
       <AboutSection />
-      <WorkSection />
+      <HookHomeSection />
+      <WorkHomePage />
       <CompaniesSection />
-      {/* <FeaturedWorkSection /> */}
-      <ContactFooter />
     </>
   );
 }

@@ -46,7 +46,7 @@ export default function TextMaskSection() {
         <h1
           className={cn("", textClass({ variant: "outline" }))}
           style={{
-            WebkitTextStroke: "1px var(--brand-6)",
+            WebkitTextStroke: "1px var(--primary)",
           }}
         >
           {displayText}

@@ -1,18 +1,22 @@
 "use client";
 
 import { ShaderGradient, ShaderGradientCanvas } from "@shadergradient/react";
-import { IconArrowUpRight } from "@tabler/icons-react";
 import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import { useRef } from "react";
-import Button from "./button";
+import { CTAButton } from "./cta.button";
 import { Marquee } from "./marque";
 import { Section } from "./section";
 import ShinyText from "./shiny-text";
+import { TextAnimate } from "./text-animated";
 
 export default function HeroSection() {
   return (
-    <Section className={"bg-background h-screen pt-24"}>
+    <Section
+      className={
+        "relative z-20 h-screen bg-radial-[at_25%_25%] from-background via-background to-primary pt-24"
+      }
+    >
       <HeroHeading />
     </Section>
   );
@@ -20,14 +24,40 @@ export default function HeroSection() {
 
 function HeroHeading() {
   return (
-    <div className="" data-block="contain">
-      <div className="relative text-5xl md:text-8xl font-medium text-center sm:text-start mx-4">
-        <h3>We turn you marketing spends into measurable revenue</h3>
+    <div className="mt-16" data-block="contain">
+      <div className="relative text-4xl md:text-8xl mx-auto font-medium space-y-16">
+        <div className="text-center mx-auto w-full sm:w-[70%]">
+          <TextAnimate animation="blurInUp" duration={0.6} className="j">
+            We turn your marketing spends into Measurable Revenue.
+          </TextAnimate>
+        </div>
+
+        {/* Sub Heading  */}
+        <div className="w-[90%] text-center sm:w-[60%] mx-auto">
+          <p className="text-sm sm:text-xl">
+            Full-service media agency for growth-stage companies who need
+            campaigns that close, not just campaigns that run.
+          </p>
+        </div>
+        {/* End Sub Heading */}
+
+        {/* CTA  */}
+        <HeroCTA />
+        {/* End CTA */}
 
         {/* Hero Visuals */}
         <HeroVisuals />
         {/* End Hero Visuals */}
       </div>
+      <LogoCloud />
+    </div>
+  );
+}
+
+function HeroCTA() {
+  return (
+    <div className="w-max mx-auto hidden xl:block">
+      <CTAButton>Get A Free Brand Audit</CTAButton>
     </div>
   );
 }
@@ -83,9 +113,6 @@ export function XHeroSection() {
           <p className="mix-blend-difference text-md font-medium text-white">
             Let&apos;s Audit your Marketing Strategy
           </p>
-          <Button icon={<IconArrowUpRight className="size-4 text-black" />}>
-            Contact Us
-          </Button>
         </div>
       </div>
       {/* End Content */}
@@ -151,7 +178,7 @@ function LogoCloud() {
   return (
     <div className="absolute bottom-16 left-0 w-full h-32">
       <div className="py-4">
-        <h3 className="font-bold text-white/70 font-title text-center">
+        <h3 className=" text-white/70 font-title text-center">
           Brands We&apos;ve Worked with
         </h3>
       </div>

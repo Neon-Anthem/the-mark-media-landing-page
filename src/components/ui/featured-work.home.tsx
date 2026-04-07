@@ -77,7 +77,7 @@ function Title({
   const scale = useTransform(scrollYProgress, [0, 1], [0.4, 1]);
   const translateY = useTransform(scrollYProgress, [0, 1], ["60%", "0%"]);
 
-  const Icon = <IconSparkles2Filled className="text-brand-6 md:size-8" />;
+  const Icon = <IconSparkles2Filled className="text-primary md:size-8" />;
 
   return (
     <motion.div
@@ -225,7 +225,7 @@ function AnimatedCard({
       style={{ marginLeft: -128, marginTop: -128 }}
       initial={{ x: initialPos.x, y: initialPos.y, opacity: 0 }}
     >
-      <div className="relative border rounded-full shadow-md shadow-brand-6/40">
+      <div className="relative border rounded-full shadow-md shadow-primary/40">
         {/* Disk */}
         <div className="absolute size-12 bg-black rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute size-6 bg-gray-200 rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
