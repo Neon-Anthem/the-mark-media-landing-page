@@ -127,7 +127,9 @@ export function WorkHomeCard({ ...item }: ICaseStudies) {
 
         {/* Cta */}
         <div className="mt-6">
-          <CTAButton>Read Case Study</CTAButton>
+          <CTAButton variant={"primary"} className="text-base">
+            Read Case Study
+          </CTAButton>
         </div>
         {/* End Cta */}
       </div>

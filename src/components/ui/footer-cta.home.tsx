@@ -10,7 +10,7 @@ import { Section } from "./section";
 export default function FooterCTASection() {
   return (
     <Section>
-      <div className="w-[90%] mx-auto">
+      <div className="w-[90%] mx-auto" id="#contact">
         {/* Outer Bg */}
 
         <div className="relative bg-radial-[at_25%_25%] from-primary to-brand-2 p-6 sm:p-12">

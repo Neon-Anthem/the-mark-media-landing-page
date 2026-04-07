@@ -57,7 +57,14 @@ function HeroHeading() {
 function HeroCTA() {
   return (
     <div className="w-max mx-auto hidden xl:block">
-      <CTAButton>Get A Free Brand Audit</CTAButton>
+      <CTAButton
+        variant={"primary"}
+        mode={"rounded"}
+        size={"small"}
+        iconMode="tiled"
+      >
+        Get Our Free Brand Audit
+      </CTAButton>
     </div>
   );
 }

@@ -2,27 +2,104 @@
 
 import { cn } from "@/lib/utils";
 import { IconArrowRight, IconArrowUpRight } from "@tabler/icons-react";
-import { motion } from "motion/react";
-import { PropsWithChildren } from "react";
+import { cva, VariantProps } from "class-variance-authority";
+import { motion, Transition } from "motion/react";
+import { PropsWithChildren, useState } from "react";
+
+const ctaButtonVariants = cva("flex items-center font-medium", {
+  variants: {
+    variant: {
+      default:
+        "bg-linear-90 from-secondary to-foreground text-secondary-foreground",
+      primary:
+        "bg-linear-135 from-primary/30 to-background text-foreground outline outline-primary/40 [&>span]:bg-primary [&>span]:text-background",
+    },
+    mode: { default: "", rounded: "rounded-full [&>span]:rounded-full" },
+    size: {
+      base: "px-2 py-1 gap-4 text-xl",
+      small: "px-2 py-0.5 gap-3 text-base [&>span]:-mr-1.5",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    mode: "default",
+    size: "base",
+  },
+});
 
 export function CTAButton({
   children,
   className,
-}: PropsWithChildren & { className?: string }) {
+  variant,
+  mode,
+  size,
+  iconMode = "plain",
+}: PropsWithChildren & {
+  className?: string;
+  iconMode?: "plain" | "tiled";
+} & VariantProps<typeof ctaButtonVariants>) {
+  const [controls, setControls] = useState<"initial" | "animate">("initial");
+
+  const transitions: Transition = {
+    type: "spring",
+    duration: 0.6,
+  };
+
+  const activate = () => {
+    setControls("animate");
+  };
+  const deactivate = () => {
+    setControls("initial");
+  };
+
   return (
     <motion.button
-      whileHover={{
-        scale: 1.05,
-      }}
+      onHoverStart={activate}
+      onHoverEnd={deactivate}
+      onFocus={activate}
+      onBlur={deactivate}
       className={cn(
-        "flex items-center text-secondary-foreground font-medium text-lg gap-4 bg-linear-90 from-secondary to-foreground px-2 py-1",
-        className,
+        "group",
+        ctaButtonVariants({ className, mode, variant, size }),
       )}
     >
       {children ? children : "Book a call"}
-      <span className="bg-background text-foreground p-2 -mr-1">
-        <IconArrowRight className="size-4" />
-      </span>
+      <motion.span className="bg-background text-foreground -mr-1 *:size-4 overflow-hidden">
+        <div className="flex items-center m-2 *:-translate-x-1">
+          <motion.div
+            className="flex items-center justify-center"
+            transition={transitions}
+            variants={{
+              initial: {
+                translateX: -40,
+                translateY: iconMode === "tiled" ? 40 : 0,
+              },
+              animate: {
+                translateX: 0,
+              },
+            }}
+            animate={controls}
+          >
+            {iconMode === "plain" ? <IconArrowRight /> : <IconArrowUpRight />}
+          </motion.div>
+          <motion.div
+            className="flex items-center justify-center"
+            animate={controls}
+            transition={transitions}
+            variants={{
+              initial: {
+                translateX: "-100%",
+              },
+              animate: {
+                translateX: 0,
+                translateY: iconMode === "tiled" ? -40 : 0,
+              },
+            }}
+          >
+            {iconMode === "plain" ? <IconArrowRight /> : <IconArrowUpRight />}
+          </motion.div>
+        </div>
+      </motion.span>
     </motion.button>
   );
 

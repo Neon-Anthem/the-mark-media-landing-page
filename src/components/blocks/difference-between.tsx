@@ -3,11 +3,9 @@ import LogoLettermark from "../../../public/assets/tmm-logo-lettermark";
 import { Table, TableBody, TableCell, TableHead, TableRow } from "../ui/table";
 
 export default function DifferenceBetween() {
-  const headers = DIFFERENCE_BETTWEEN_US?.map((h) => h.point);
-
   return (
-    <div className="mt-8 sm:mt-16">
-      <Table>
+    <div className="">
+      <Table className="border border-secondary border-collapse">
         <TableBody>
           <TableRow>
             <TableHead>
@@ -18,13 +16,23 @@ export default function DifferenceBetween() {
                 <LogoLettermark />
               </span>
             </TableHead>
+            <TableHead>Other Agencies</TableHead>
           </TableRow>
           {DIFFERENCE_BETTWEEN_US?.map((process) => {
             return (
-              <TableRow key={process.point}>
-                <TableCell>{process.point}</TableCell>
-                <TableCell>{process.us}</TableCell>
-                <TableCell>{process.them}</TableCell>
+              <TableRow
+                key={process.point}
+                className="first:w-44 relative *:border *:border-secondary!"
+              >
+                <TableCell className="sticky left-0 bg-background">
+                  {process.point}
+                </TableCell>
+                <TableCell className="min-w-xs max-w-sm whitespace-normal">
+                  {process.us}
+                </TableCell>
+                <TableCell className="min-w-xs max-w-sm whitespace-normal">
+                  {process.them}
+                </TableCell>
               </TableRow>
             );
           })}
