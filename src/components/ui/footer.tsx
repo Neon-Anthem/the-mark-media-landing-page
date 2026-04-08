@@ -6,6 +6,7 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
+import LogoLettermark from "../../../public/assets/tmm-logo-lettermark";
 
 interface IFooterLinks {
   title: string;
@@ -46,7 +47,7 @@ export function Logo() {
           speed={0.8}
         />
       </div> */}
-      <h1 className="w-max mx-auto text-3xl sm:text-5xl md:text-9xl uppercase font-black text-primary">
+      <h1 className="w-max mx-auto text-[clamp(1.5rem,10vw,9rem)] uppercase font-black text-primary">
         The Mark Media
       </h1>
     </div>
@@ -70,12 +71,15 @@ export default function Footer() {
                 href="/"
                 aria-label="Brand"
               >
-                <Image
+                {/* <Image
                   src={"/logox.png"}
                   width={100}
                   height={100}
                   alt="The mark Media Logo"
-                />
+                /> */}
+                <span className="*:h-auto *:max-w-32 fill-foreground">
+                  <LogoLettermark />
+                </span>
               </Link>
               <p className="mt-3 text-xs sm:text-sm text-white/40">
                 © {currentYear} The Mark Media.

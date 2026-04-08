@@ -1,7 +1,5 @@
 "use client";
 
-import { footerTextAtom } from "@/store/footer-text-atom";
-import { useSetAtom } from "jotai";
 import {
   motion,
   TargetAndTransition,
@@ -9,6 +7,8 @@ import {
   useInView,
 } from "motion/react";
 import { useEffect, useRef } from "react";
+import { Section } from "./section";
+import { SectionTitle } from "./section-title";
 
 interface IServiceType {
   id: string;
@@ -49,6 +49,35 @@ const serviceGroups: IServiceGroup[] = [
         tag: ["Instagram", "Platform Expertise"],
         description: "Platform expertise for maximum reach",
       },
+      {
+        id: "analytics-reporting",
+        title: "Analytics & Reporting",
+        tag: ["Insights", "Tracking"],
+        description: "Measurable insights and performance tracking",
+      },
+      {
+        id: "affiliate-marketing",
+        title: "Affiliate Marketing",
+        tag: ["Performance", "Partnerships"],
+        description: "Performance-based partnerships",
+      },
+    ],
+  },
+  {
+    groupTitle: "Content & Strategy",
+    services: [
+      {
+        id: "content-strategy",
+        title: "Content Strategy",
+        tag: ["Storytelling", "Data-driven"],
+        description: "Data-driven storytelling frameworks",
+      },
+      {
+        id: "content-creation",
+        title: "Content Creation",
+        tag: ["Visual Content", "Professional"],
+        description: "Professional, engaging visual content",
+      },
     ],
   },
   {
@@ -69,44 +98,16 @@ const serviceGroups: IServiceGroup[] = [
       },
       {
         id: "google-my-business",
-        title: "Google Business",
+        title: "Google My Business",
         tag: ["Local", "Presence"],
         description: "Local presence optimisation",
       },
     ],
   },
-  {
-    groupTitle: "Content & Strategy",
-    services: [
-      {
-        id: "content-strategy",
-        title: "Content Strategy",
-        tag: ["Storytelling", "Data-driven"],
-        description: "Data-driven storytelling frameworks",
-      },
-      {
-        id: "content-creation",
-        title: "Content Creation",
-        tag: ["Visual Content", "Professional"],
-        description: "Professional, engaging visual content",
-      },
-      {
-        id: "affiliate-marketing",
-        title: "Affiliate Marketing",
-        tag: ["Performance", "Partnerships"],
-        description: "Performance-based partnerships",
-      },
-    ],
-  },
+
   {
     groupTitle: "Analytics & Development",
     services: [
-      {
-        id: "analytics-reporting",
-        title: "Analytics & Reporting",
-        tag: ["Insights", "Tracking"],
-        description: "Measurable insights and performance tracking",
-      },
       {
         id: "website-development",
         title: "Website Development",
@@ -142,16 +143,11 @@ export const serviceList = [
 ];
 
 export default function ServicesHome() {
-  const setText = useSetAtom(footerTextAtom);
-
-  useEffect(() => {
-    setText("GROWTH");
-  }, [setText]);
-
   return (
-    <section className="bg-background sm:py-24 py-12">
+    <Section className="bg-background" variant={"heading"}>
       <div className="container mx-auto space-y-12 px-4 sm:px-0">
-        <Title />
+        <SectionTitle>Services</SectionTitle>
+        {/* <Title /> */}
         {/*  */}
         <div className="flex flex-col mx-auto gap-4">
           {serviceGroups.map((group) => (
@@ -164,7 +160,7 @@ export default function ServicesHome() {
         </div>
         {/*  */}
       </div>
-    </section>
+    </Section>
   );
 }
 

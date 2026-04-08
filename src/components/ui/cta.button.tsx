@@ -4,8 +4,9 @@ import { cn } from "@/lib/utils";
 import { contactFormOpen } from "@/store/contact-store";
 import { IconArrowRight, IconArrowUpRight } from "@tabler/icons-react";
 import { cva, VariantProps } from "class-variance-authority";
-import { useAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import { motion, Transition } from "motion/react";
+import { useRouter } from "next/navigation";
 import { PropsWithChildren, useState } from "react";
 
 const ctaButtonVariants = cva("flex items-center font-medium", {
@@ -36,10 +37,13 @@ export function CTAButton({
   mode,
   size,
   iconMode = "plain",
+  href,
 }: PropsWithChildren & {
   className?: string;
   iconMode?: "plain" | "tiled";
+  href?: string;
 } & VariantProps<typeof ctaButtonVariants>) {
+  const redirect = useRouter();
   const [controls, setControls] = useState<"initial" | "animate">("initial");
 
   const transitions: Transition = {
@@ -54,12 +58,16 @@ export function CTAButton({
     setControls("initial");
   };
 
-  const [open, isOpen] = useAtom(contactFormOpen);
+  const setIsOpen = useSetAtom(contactFormOpen);
 
   return (
     <motion.button
       onClick={() => {
-        isOpen(true);
+        if (href) {
+          redirect.push(href);
+        } else {
+          setIsOpen(true);
+        }
       }}
       onHoverStart={activate}
       onHoverEnd={deactivate}

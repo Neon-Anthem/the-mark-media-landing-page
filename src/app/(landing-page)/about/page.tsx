@@ -22,8 +22,8 @@ export default function AboutPage() {
         <div className="mt-8 sm:mt-16">
           <div className="my-2">
             <h3 className="text-2xl md:text-4xl capitalize text-center sm:text-start">
-              What <span className="text-secondary">differenciates</span> us
-              from the <span className="">Rest</span>
+              What <span className="text-primary">differenciates</span> us from
+              the <span className="">Rest</span>
             </h3>
           </div>
 

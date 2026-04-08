@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from "../ui/table";
 export default function DifferenceBetween() {
   return (
     <div className="">
-      <Table className="border border-secondary border-collapse">
+      <Table className="border border-primary border-collapse">
         <TableBody>
           <TableRow>
             <TableHead>
@@ -22,7 +22,7 @@ export default function DifferenceBetween() {
             return (
               <TableRow
                 key={process.point}
-                className="first:w-44 relative *:border *:border-secondary!"
+                className="first:w-44 relative *:border *:border-primary!"
               >
                 <TableCell className="sticky left-0 bg-background">
                   {process.point}

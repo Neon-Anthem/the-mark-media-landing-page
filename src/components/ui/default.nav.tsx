@@ -1,6 +1,8 @@
 "use client";
 
+import { contactFormOpen } from "@/store/contact-store";
 import { IconMenu, IconX } from "@tabler/icons-react";
+import { useSetAtom } from "jotai";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
@@ -10,17 +12,25 @@ import { CTAButton } from "./cta.button";
 interface INavLink {
   href: string;
   title: string;
+  onClick?: () => void;
 }
-
-const navLinks: INavLink[] = [
-  { href: "/about", title: "About Us" },
-  { href: "/services", title: "Services" },
-  { href: "/case-studies", title: "Case Studies" },
-  { href: "#contact", title: "Contact Us" },
-];
 
 export default function DefaultNav() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const setFormOpen = useSetAtom(contactFormOpen);
+
+  const navLinks: INavLink[] = [
+    { href: "/about", title: "About Us" },
+    { href: "/services", title: "Services" },
+    { href: "/case-studies", title: "Case Studies" },
+    {
+      href: "",
+      title: "Contact Us",
+      onClick: () => {
+        setFormOpen(true);
+      },
+    },
+  ];
 
   return (
     <div className="">
@@ -64,7 +74,7 @@ export default function DefaultNav() {
                   return (
                     <motion.li
                       onClick={() => {
-                        setIsOpen((prev) => !prev);
+                        item?.onClick?.();
                       }}
                       className="text-foreground text-5xl md:text-8xl font-title"
                       key={item.href}
@@ -100,7 +110,13 @@ export default function DefaultNav() {
             <ul className="flex space-x-8">
               {navLinks?.map((item) => {
                 return (
-                  <li className="text-foreground text-base" key={item.href}>
+                  <li
+                    className="text-foreground text-base"
+                    key={item.href}
+                    onClick={() => {
+                      item?.onClick?.();
+                    }}
+                  >
                     <Link href={item.href}>{item.title}</Link>
                   </li>
                 );
@@ -118,7 +134,10 @@ export default function DefaultNav() {
             >
               <IconMenu className="size-4 sm:size-6" />
             </span>
-            <CTAButton className="text-base py-0.5 outline outline-background [&>span]:-mr-1.5">
+            <CTAButton
+              mode="rounded"
+              className="pl-3 text-base py-0.5 outline outline-background [&>span]:-mr-1.5"
+            >
               Talk to Us
             </CTAButton>
           </div>

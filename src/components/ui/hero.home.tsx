@@ -1,13 +1,10 @@
 "use client";
 
 import { ShaderGradient, ShaderGradientCanvas } from "@shadergradient/react";
-import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
-import { useRef } from "react";
 import { CTAButton } from "./cta.button";
 import { Marquee } from "./marque";
 import { Section } from "./section";
-import ShinyText from "./shiny-text";
 
 export default function HeroSection() {
   return (
@@ -17,7 +14,8 @@ export default function HeroSection() {
       }
     >
       <HeroHeading />
-      {/* <LogoCloud /> */}
+
+      <LogoCloud />
     </Section>
   );
 }
@@ -25,7 +23,7 @@ export default function HeroSection() {
 function HeroHeading() {
   return (
     <div className="pt-16 h-full" data-block="contain">
-      <div className="relative text-3xl md:text-8xl mx-auto font-medium space-y-8 sm:space-y-16">
+      <div className="text-3xl md:text-8xl mx-auto font-medium">
         <div className="text-center mx-auto w-full">
           {/* <TextAnimate animation="blurInUp" duration={0.6} className="">
             We turn your marketing spends into Measurable Revenue.
@@ -37,7 +35,7 @@ function HeroHeading() {
         </div>
 
         {/* Sub Heading  */}
-        <div className="w-[90%] text-center sm:w-[60%] mx-auto">
+        <div className="w-[90%] text-center sm:w-[60%] mx-auto mt-4 xl:mt-16">
           <p className="text-sm sm:text-xl">
             Full-service media agency for growth-stage companies who need
             campaigns that close, not just campaigns that run.
@@ -48,10 +46,6 @@ function HeroHeading() {
         {/* CTA  */}
         <HeroCTA />
         {/* End CTA */}
-
-        {/* Hero Visuals */}
-        <HeroVisuals />
-        {/* End Hero Visuals */}
       </div>
     </div>
   );
@@ -59,7 +53,7 @@ function HeroHeading() {
 
 function HeroCTA() {
   return (
-    <div className="w-max mx-auto">
+    <div className="w-max mx-auto mt-8 xl:mt-20">
       <CTAButton
         variant={"primary"}
         mode={"rounded"}
@@ -69,67 +63,6 @@ function HeroCTA() {
         Get Our Free Brand Audit
       </CTAButton>
     </div>
-  );
-}
-
-function HeroVisuals() {
-  return (
-    <div className="">{/* //todo: Place a video reel on the concept. */}</div>
-  );
-}
-
-export function XHeroSection() {
-  const container = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["center center", "end start"],
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.8]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-  const translateY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-
-  return (
-    <section className="h-screen bg-blue-600 relative" ref={container}>
-      {/* Content */}
-      <div className="w-full space-y-16 overflow-hidden h-full flex flex-col items-center justify-center text-center px-4">
-        {/* Tagline */}
-        <ShinyText
-          className="text-xl mix-blend-difference text-white/80"
-          text="Your Digital Compass"
-        />
-
-        {/* End Tagline */}
-
-        {/* Hero Title */}
-        <div className="">
-          <motion.h2
-            style={{ scale, opacity, translateY }}
-            //   animate={{ opacity: 1, scale: [1.8, 0.9, 1] }}
-            transition={{
-              duration: 0.5,
-            }}
-            className="text-8xl max-w-[80vw]  font-medium text-white/90 font-title z-10 mix-blend-difference"
-          >
-            {/* Skyrocket your business with our innovative Marketing solutions */}
-            Make Your Mark. <br></br>Create Lasting Digital Impact
-          </motion.h2>
-        </div>
-        {/* End Hero Title */}
-
-        {/* CTA */}
-        <div className="flex items-center gap-12 justify-center py-1 pl-4 pr-1">
-          <p className="mix-blend-difference text-md font-medium text-white">
-            Let&apos;s Audit your Marketing Strategy
-          </p>
-        </div>
-      </div>
-      {/* End Content */}
-      {/* Logo Cloud */}
-      <LogoCloud />
-      {/* End Logo Cloud */}
-    </section>
   );
 }
 
@@ -158,7 +91,7 @@ function LogoCloud() {
       src: "/assets/client-logos/curated-coffee.png",
       alt: "Curated Coffee",
       opacity: 0.55,
-      size: "5rem",
+      size: "4rem",
     },
     {
       src: "/assets/client-logos/kiki.png",
@@ -185,28 +118,37 @@ function LogoCloud() {
       src: "/assets/client-logos/nykaa.png",
       alt: "Nykaa",
       opacity: 0.55,
-      size: "8rem",
+      size: "8.5rem",
     },
     {
       src: "/assets/client-logos/pride-of-cows.png",
       alt: "Pride Of Cows",
       opacity: 0.55,
     },
-    { src: "/assets/client-logos/escenza.png", alt: "Escenza", opacity: 0.55 },
+    {
+      src: "/assets/client-logos/escenza.png",
+      alt: "Escenza",
+      opacity: 0.55,
+      size: "5rem",
+    },
   ];
 
   return (
-    <div className="w-full h-32">
-      <div className="py-4">
-        <h3 className=" text-white/70 font-title text-center">
+    <div className="absolute bottom-0 w-full flex flex-col sm:flex-row sm:items-center">
+      <div className="py-4 px-2 sm:border-r border-primary/50">
+        <h3 className=" text-white/70 font-title text-center text-sm text-nowrap">
           Brands We&apos;ve Worked with
         </h3>
       </div>
-      <Marquee className="" reverse>
-        {logos?.map((logo) => {
-          return <Logo key={logo.src} {...logo} />;
-        })}
-      </Marquee>
+      <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+        <Marquee className="" reverse>
+          {logos?.map((logo) => {
+            return <Logo key={logo.src} {...logo} />;
+          })}
+        </Marquee>
+        {/* <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div> */}
+        {/* <div className=" pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-120 from-transparent to-primary/30"></div> */}
+      </div>
     </div>
   );
 }
