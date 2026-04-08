@@ -8,28 +8,32 @@ import { CTAButton } from "./cta.button";
 import { Marquee } from "./marque";
 import { Section } from "./section";
 import ShinyText from "./shiny-text";
-import { TextAnimate } from "./text-animated";
 
 export default function HeroSection() {
   return (
     <Section
       className={
-        "relative z-20 h-screen bg-radial-[at_25%_25%] from-background via-background to-primary pt-24"
+        "relative z-50 h-screen bg-radial-[at_25%_25%] from-background via-background to-primary pt-24"
       }
     >
       <HeroHeading />
+      {/* <LogoCloud /> */}
     </Section>
   );
 }
 
 function HeroHeading() {
   return (
-    <div className="mt-16" data-block="contain">
-      <div className="relative text-4xl md:text-8xl mx-auto font-medium space-y-16">
-        <div className="text-center mx-auto w-full sm:w-[70%]">
-          <TextAnimate animation="blurInUp" duration={0.6} className="j">
+    <div className="pt-16 h-full" data-block="contain">
+      <div className="relative text-3xl md:text-8xl mx-auto font-medium space-y-8 sm:space-y-16">
+        <div className="text-center mx-auto w-full">
+          {/* <TextAnimate animation="blurInUp" duration={0.6} className="">
             We turn your marketing spends into Measurable Revenue.
-          </TextAnimate>
+          </TextAnimate> */}
+          <h4 className="capitalize">
+            We Turn Your<br></br>Marketing Spends into<br></br>Measurable
+            Revenue.
+          </h4>
         </div>
 
         {/* Sub Heading  */}
@@ -49,14 +53,13 @@ function HeroHeading() {
         <HeroVisuals />
         {/* End Hero Visuals */}
       </div>
-      <LogoCloud />
     </div>
   );
 }
 
 function HeroCTA() {
   return (
-    <div className="w-max mx-auto hidden xl:block">
+    <div className="w-max mx-auto">
       <CTAButton
         variant={"primary"}
         mode={"rounded"}
@@ -88,9 +91,9 @@ export function XHeroSection() {
   const translateY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   return (
-    <section className="h-screen relative" ref={container}>
+    <section className="h-screen bg-blue-600 relative" ref={container}>
       {/* Content */}
-      <div className="absolute top-[45%] -translate-y-1/2 w-full space-y-16 overflow-hidden h-full flex flex-col items-center justify-center text-center px-4">
+      <div className="w-full space-y-16 overflow-hidden h-full flex flex-col items-center justify-center text-center px-4">
         {/* Tagline */}
         <ShinyText
           className="text-xl mix-blend-difference text-white/80"
@@ -169,6 +172,16 @@ function LogoCloud() {
       opacity: 0.55,
     },
     {
+      src: "/assets/client-logos/phoenix-marketcity.png",
+      alt: "Pheonix Marketcity",
+      opacity: 0.55,
+    },
+    {
+      src: "/assets/client-logos/mantri-square.png",
+      alt: "Mantri Square",
+      opacity: 0.55,
+    },
+    {
       src: "/assets/client-logos/nykaa.png",
       alt: "Nykaa",
       opacity: 0.55,
@@ -183,7 +196,7 @@ function LogoCloud() {
   ];
 
   return (
-    <div className="absolute bottom-16 left-0 w-full h-32">
+    <div className="w-full h-32">
       <div className="py-4">
         <h3 className=" text-white/70 font-title text-center">
           Brands We&apos;ve Worked with

@@ -1,3 +1,4 @@
+import ContactFormDialog from "@/components/dialog/contact-form";
 import LenisProvider from "@/components/provider/lenis-provider";
 import DefaultNav from "@/components/ui/default.nav";
 import Footer from "@/components/ui/footer";
@@ -37,6 +38,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <ContactFormDialog />
         </LenisProvider>
       </body>
     </html>

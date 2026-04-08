@@ -1,8 +1,10 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { contactFormOpen } from "@/store/contact-store";
 import { IconArrowRight, IconArrowUpRight } from "@tabler/icons-react";
 import { cva, VariantProps } from "class-variance-authority";
+import { useAtom } from "jotai";
 import { motion, Transition } from "motion/react";
 import { PropsWithChildren, useState } from "react";
 
@@ -21,7 +23,7 @@ const ctaButtonVariants = cva("flex items-center font-medium", {
     },
   },
   defaultVariants: {
-    variant: "default",
+    variant: "primary",
     mode: "default",
     size: "base",
   },
@@ -52,14 +54,19 @@ export function CTAButton({
     setControls("initial");
   };
 
+  const [open, isOpen] = useAtom(contactFormOpen);
+
   return (
     <motion.button
+      onClick={() => {
+        isOpen(true);
+      }}
       onHoverStart={activate}
       onHoverEnd={deactivate}
       onFocus={activate}
       onBlur={deactivate}
       className={cn(
-        "group",
+        "group text-nowrap",
         ctaButtonVariants({ className, mode, variant, size }),
       )}
     >

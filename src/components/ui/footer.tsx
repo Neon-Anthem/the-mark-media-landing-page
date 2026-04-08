@@ -6,7 +6,6 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
-import FooterCTASection from "./footer-cta.home";
 
 interface IFooterLinks {
   title: string;
@@ -59,8 +58,6 @@ export default function Footer() {
 
   return (
     <div className="mt-16">
-      <FooterCTASection />
-
       <Logo />
       {/* <TextMaskSection /> */}
       <footer className="mt-auto w-full py-10 px-4 sm:px-6 lg:px-8 bg-background border-t border-primary/30">

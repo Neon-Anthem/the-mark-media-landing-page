@@ -92,8 +92,8 @@ export default function DefaultNav() {
       </AnimatePresence>
 
       {/* Mobile Nav */}
-      <div className="fixed top-0 left-0 w-full z-100 mix-blend-difference">
-        <div className="flex items-center justify-between gap-24 z-50 w-full h-12 px-4 sm:px-12">
+      <div className="fixed top-0 left-0 w-full z-100 bg-background py-1 border-b border-primary/20">
+        <div className="flex items-center justify-between z-50 w-full h-12 px-4 sm:px-12">
           <BrandLogo />
 
           <div className="hidden md:block">
@@ -109,20 +109,22 @@ export default function DefaultNav() {
           </div>
 
           {/* Book Now */}
-          <div className="w-32"></div>
+          <div className="w-max flex items-center gap-2 sm:gap-6">
+            <span
+              className="flex md:hidden mix-blend-difference"
+              onClick={() => {
+                setIsOpen((prev) => !prev);
+              }}
+            >
+              <IconMenu className="size-4 sm:size-6" />
+            </span>
+            <CTAButton className="text-base py-0.5 outline outline-background [&>span]:-mr-1.5">
+              Talk to Us
+            </CTAButton>
+          </div>
+
           {/* Book Now */}
         </div>
-      </div>
-      <div className="fixed top-0 right-0 px-2 sm:px-6 pt-2 w-max z-200 flex items-center gap-2 sm:gap-6">
-        <span
-          className="flex md:hidden mix-blend-difference"
-          onClick={() => {
-            setIsOpen((prev) => !prev);
-          }}
-        >
-          <IconMenu className="size-4 sm:size-6" />
-        </span>
-        <CTAButton className="text-base py-0.5 outline outline-background [&>span]:-mr-1.5" />
       </div>
     </div>
   );
