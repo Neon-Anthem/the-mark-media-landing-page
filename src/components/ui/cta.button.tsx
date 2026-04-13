@@ -17,7 +17,7 @@ const ctaButtonVariants = cva("flex items-center font-medium", {
       primary:
         "bg-linear-135 from-primary/30 to-background text-foreground outline outline-primary/40 [&>span]:bg-primary [&>span]:text-background",
     },
-    mode: { default: "", rounded: "rounded-full [&>span]:rounded-full" },
+    mode: { default: "", rounded: "rounded-full [&>span]:rounded-full pl-3!" },
     size: {
       base: "px-2 py-1 gap-4 text-xl",
       small: "px-2 py-0.5 gap-3 text-base [&>span]:-mr-1.5",
@@ -25,7 +25,7 @@ const ctaButtonVariants = cva("flex items-center font-medium", {
   },
   defaultVariants: {
     variant: "primary",
-    mode: "default",
+    mode: "rounded",
     size: "base",
   },
 });

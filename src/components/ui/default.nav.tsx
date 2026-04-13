@@ -40,7 +40,11 @@ export default function DefaultNav() {
         {isOpen ? (
           <div className="fixed bg-background h-screen w-full z-200">
             <div className="container px-4 sm:px-0 flex items-center justify-between mx-auto my-4">
-              <BrandLogo />
+              <BrandLogo
+                onClick={() => {
+                  setIsOpen((prev) => !prev);
+                }}
+              />
 
               <button
                 className=""
@@ -75,6 +79,7 @@ export default function DefaultNav() {
                     <motion.li
                       onClick={() => {
                         item?.onClick?.();
+                        setIsOpen((prev) => !prev);
                       }}
                       className="text-foreground text-5xl md:text-8xl font-title"
                       key={item.href}
@@ -104,7 +109,7 @@ export default function DefaultNav() {
       {/* Mobile Nav */}
       <div className="fixed top-0 left-0 w-full z-100 bg-background py-1 border-b border-primary/20">
         <div className="flex items-center justify-between z-50 w-full h-12 px-4 sm:px-12">
-          <BrandLogo />
+          <BrandLogo onClick={() => {}} />
 
           <div className="hidden md:block">
             <ul className="flex space-x-8">
@@ -149,9 +154,15 @@ export default function DefaultNav() {
   );
 }
 
-export const BrandLogo = () => (
+export const BrandLogo = ({ onClick }: { onClick: () => void }) => (
   <div className="">
-    <Link href="/" className="text-white stroke-1 stroke-white fill-white">
+    <Link
+      href="/"
+      className="text-white stroke-1 stroke-white fill-white"
+      onClick={() => {
+        onClick();
+      }}
+    >
       {/* <h4 className="text-xl text-foreground font-medium">The Mark Media</h4> */}
       {/* <Image
         src={"/logox.png"}

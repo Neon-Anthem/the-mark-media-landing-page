@@ -7,7 +7,7 @@ import { TextAnimate } from "./text-animated";
 
 export default function ProcessHomeSection() {
   return (
-    <Section className="relative min-h-[300vh] sm:min-h-[200vh] border-y border-primary/40">
+    <Section className="relative min-h-[200vh] border-y border-primary/40">
       <div className="sticky top-20 z-50">
         {/* Title */}
         <SectionTitle subheadline="Our Process" className="">

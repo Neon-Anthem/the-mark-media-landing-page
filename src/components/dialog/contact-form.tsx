@@ -1,6 +1,7 @@
 "use client";
 
 import { contactFormOpen } from "@/store/contact-store";
+import { sendAdminMail } from "@/utils/send-mail-admin";
 import { IconLoader2 } from "@tabler/icons-react";
 import { formOptions, useForm } from "@tanstack/react-form";
 import { useAtom } from "jotai";
@@ -30,8 +31,9 @@ export default function ContactFormDialog() {
 
   const form = useForm({
     ...formOpts,
+
     onSubmit: async ({ value }) => {
-      // await sendAdminMail(value);
+      await sendAdminMail(value);
     },
   });
 
@@ -46,7 +48,7 @@ export default function ContactFormDialog() {
         onSubmit={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          form.handleSubmit();
+          console.log("handle submission");
         }}
       >
         <DialogContent className={"bg-background text-foreground rounded-none"}>
@@ -58,91 +60,81 @@ export default function ContactFormDialog() {
 
           {/* Form Content */}
           <FieldGroup className="text-foreground **:[&>input]:rounded-none **:[&>input]:border-primary/30">
-            <Field>
-              <form.Field name="firstName">
-                {(field) => (
-                  <>
-                    <FieldLabel>First Name</FieldLabel>
-                    <FieldContent>
-                      <Input
-                        name={field.name}
-                        value={field.state.value}
-                        placeholder="Your first name"
-                        onChange={(e) => field.handleChange(e.target.value)}
-                      />
-                    </FieldContent>
-                  </>
-                )}
-              </form.Field>
-            </Field>
-            <Field>
-              <form.Field name="lastName">
-                {(field) => (
-                  <>
-                    <FieldLabel>Last Name</FieldLabel>
-                    <FieldContent>
-                      <Input
-                        name={field.name}
-                        value={field.state.value}
-                        placeholder="Your Last name"
-                        onChange={(e) => field.handleChange(e.target.value)}
-                      />
-                    </FieldContent>
-                  </>
-                )}
-              </form.Field>
-            </Field>
-            <Field>
-              <form.Field name="companyName">
-                {(field) => (
-                  <>
-                    <FieldLabel>Company Name</FieldLabel>
-                    <FieldContent>
-                      <Input
-                        name={field.name}
-                        value={field.state.value}
-                        placeholder="Acme Corp."
-                        onChange={(e) => field.handleChange(e.target.value)}
-                      />
-                    </FieldContent>
-                  </>
-                )}
-              </form.Field>
-            </Field>
-            <Field>
-              <form.Field name="phoneNumber">
-                {(field) => (
-                  <>
-                    <FieldLabel>Phone Number</FieldLabel>
-                    <FieldContent>
-                      <Input
-                        name={field.name}
-                        value={field.state.value}
-                        placeholder="*** *** 12"
-                        onChange={(e) => field.handleChange(e.target.value)}
-                      />
-                    </FieldContent>
-                  </>
-                )}
-              </form.Field>
-            </Field>
-            <Field>
-              <form.Field name="email">
-                {(field) => (
-                  <>
-                    <FieldLabel>Email</FieldLabel>
-                    <FieldContent>
-                      <Input
-                        name={field.name}
-                        value={field.state.value}
-                        placeholder="abc@company.com"
-                        onChange={(e) => field.handleChange(e.target.value)}
-                      />
-                    </FieldContent>
-                  </>
-                )}
-              </form.Field>
-            </Field>
+            <form.Field name="firstName">
+              {(field) => (
+                <Field>
+                  <FieldLabel>First Name</FieldLabel>
+                  <FieldContent>
+                    <Input
+                      name={field.name}
+                      value={field.state.value}
+                      placeholder="Your first name"
+                      onChange={(e) => field.handleChange(e.target.value)}
+                    />
+                  </FieldContent>
+                </Field>
+              )}
+            </form.Field>
+            <form.Field name="lastName">
+              {(field) => (
+                <Field>
+                  <FieldLabel>Last Name</FieldLabel>
+                  <FieldContent>
+                    <Input
+                      name={field.name}
+                      value={field.state.value}
+                      placeholder="Your Last name"
+                      onChange={(e) => field.handleChange(e.target.value)}
+                    />
+                  </FieldContent>
+                </Field>
+              )}
+            </form.Field>
+            <form.Field name="companyName">
+              {(field) => (
+                <Field>
+                  <FieldLabel>Company Name</FieldLabel>
+                  <FieldContent>
+                    <Input
+                      name={field.name}
+                      value={field.state.value}
+                      placeholder="Acme Corp."
+                      onChange={(e) => field.handleChange(e.target.value)}
+                    />
+                  </FieldContent>
+                </Field>
+              )}
+            </form.Field>
+            <form.Field name="phoneNumber">
+              {(field) => (
+                <Field>
+                  <FieldLabel>Phone Number</FieldLabel>
+                  <FieldContent>
+                    <Input
+                      name={field.name}
+                      value={field.state.value}
+                      placeholder="*** *** 12"
+                      onChange={(e) => field.handleChange(e.target.value)}
+                    />
+                  </FieldContent>
+                </Field>
+              )}
+            </form.Field>
+            <form.Field name="email">
+              {(field) => (
+                <Field>
+                  <FieldLabel>Email</FieldLabel>
+                  <FieldContent>
+                    <Input
+                      name={field.name}
+                      value={field.state.value}
+                      placeholder="abc@company.com"
+                      onChange={(e) => field.handleChange(e.target.value)}
+                    />
+                  </FieldContent>
+                </Field>
+              )}
+            </form.Field>
           </FieldGroup>
           {/* End Form Content */}
 
@@ -154,7 +146,15 @@ export default function ContactFormDialog() {
             >
               {([canSubmit, isSubmitting]) => {
                 return (
-                  <Button type="submit" disabled={canSubmit || !isSubmitting}>
+                  <Button
+                    type="submit"
+                    disabled={!canSubmit}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      form.handleSubmit();
+                    }}
+                  >
                     {isSubmitting ? (
                       <IconLoader2 className="animate-spin" />
                     ) : null}
