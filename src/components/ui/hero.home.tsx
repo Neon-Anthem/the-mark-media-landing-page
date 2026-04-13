@@ -100,7 +100,7 @@ function LogoCloud() {
       size: "5rem",
     },
     {
-      src: "/assets/client-logos/verosha.png",
+      src: "/assets/client-logos/verosha-spa.png",
       alt: "Verosha Cave Spa",
       opacity: 0.55,
     },

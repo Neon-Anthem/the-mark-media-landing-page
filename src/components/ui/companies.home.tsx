@@ -138,7 +138,7 @@ const companyList: LogoListType = [
     size: "5rem",
   },
   {
-    src: "/assets/client-logos/verosha.png",
+    src: "/assets/client-logos/verosha-spa.png",
     alt: "Verosha Cave Spa",
   },
   {
