@@ -124,7 +124,7 @@ const companyList: LogoListType = [
     src: "/assets/client-logos/phoenix-marketcity.png",
     alt: "Phoenix Marketcity",
     opacity: 0.8,
-    size: "8rem",
+    size: "4rem",
   },
   {
     src: "/assets/client-logos/mantri-square.png",
