@@ -80,20 +80,24 @@ export function WorkHomeCard({ ...item }: ICaseStudies) {
     >
       <div className="relative rounded-t-[inherit]">
         {/* Overlay */}
-        <div className="absolute top-0 bottom-0 left-0 right-0 bg-linear-0 from-background to-transparent w-full h-full rounded-t-[inherit]"></div>
+        <div className="absolute top-0 bottom-0 left-0 right-0 bg-linear-0 from-background/0 to-transparent w-full h-full rounded-t-[inherit]"></div>
         {/* End Overlay */}
         <div className="absolute bottom-2 left-0 right-0">
           {/* Tag */}
-          <span className="px-2 py-0.5 text-sm capitalize border ml-2">
+          <span className="px-2 py-0.5 text-sm capitalize border border-background text-background ml-2">
             {item?.tag?.[0]}
           </span>
           {/* End Tag */}
         </div>
         {/* Image */}
-        <div className="w-full rounded-t-[inherit] overflow-hidden">
+        <div
+          className={cn("w-full h-48 rounded-t-[inherit] overflow-hidden", {
+            "bg-white": item.hasBg,
+          })}
+        >
           <Image
-            src="/assets/bastian/1.jpg"
-            className="w-full"
+            src={item.imageSrc}
+            className="w-full h-full object-cover"
             alt="image"
             width={400}
             height={400}

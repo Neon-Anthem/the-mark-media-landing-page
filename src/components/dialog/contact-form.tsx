@@ -5,6 +5,7 @@ import { sendAdminMail } from "@/utils/send-mail-admin";
 import { IconLoader2 } from "@tabler/icons-react";
 import { formOptions, useForm } from "@tanstack/react-form";
 import { useAtom } from "jotai";
+import z from "zod";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -13,8 +14,22 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../ui/dialog";
-import { Field, FieldContent, FieldGroup, FieldLabel } from "../ui/field";
+import {
+  Field,
+  FieldContent,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "../ui/field";
 import { Input } from "../ui/input";
+
+const contactFormValidation = z.object({
+  firstName: z.string().min(2, "First name is too short"),
+  lastName: z.string(),
+  companyName: z.string(),
+  phoneNumber: z.string().min(5, "Enter a valid phone number"),
+  email: z.email("Enter a valid email address"),
+});
 
 export default function ContactFormDialog() {
   const [open, isOpen] = useAtom(contactFormOpen);
@@ -27,11 +42,13 @@ export default function ContactFormDialog() {
       phoneNumber: "",
       email: "",
     },
+    validators: {
+      onChange: contactFormValidation,
+    },
   });
 
   const form = useForm({
     ...formOpts,
-
     onSubmit: async ({ value }) => {
       await sendAdminMail(value);
     },
@@ -48,7 +65,6 @@ export default function ContactFormDialog() {
         onSubmit={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          console.log("handle submission");
         }}
       >
         <DialogContent className={"bg-background text-foreground rounded-none"}>
@@ -72,6 +88,11 @@ export default function ContactFormDialog() {
                       onChange={(e) => field.handleChange(e.target.value)}
                     />
                   </FieldContent>
+                  {field.state.meta.errors?.map((e) => {
+                    return (
+                      <FieldError key={e?.message}>{e?.message}</FieldError>
+                    );
+                  })}
                 </Field>
               )}
             </form.Field>
@@ -87,6 +108,11 @@ export default function ContactFormDialog() {
                       onChange={(e) => field.handleChange(e.target.value)}
                     />
                   </FieldContent>
+                  {field.state.meta.errors?.map((e) => {
+                    return (
+                      <FieldError key={e?.message}>{e?.message}</FieldError>
+                    );
+                  })}
                 </Field>
               )}
             </form.Field>
@@ -102,6 +128,11 @@ export default function ContactFormDialog() {
                       onChange={(e) => field.handleChange(e.target.value)}
                     />
                   </FieldContent>
+                  {field.state.meta.errors?.map((e) => {
+                    return (
+                      <FieldError key={e?.message}>{e?.message}</FieldError>
+                    );
+                  })}
                 </Field>
               )}
             </form.Field>
@@ -117,6 +148,11 @@ export default function ContactFormDialog() {
                       onChange={(e) => field.handleChange(e.target.value)}
                     />
                   </FieldContent>
+                  {field.state.meta.errors?.map((e) => {
+                    return (
+                      <FieldError key={e?.message}>{e?.message}</FieldError>
+                    );
+                  })}
                 </Field>
               )}
             </form.Field>
@@ -132,6 +168,11 @@ export default function ContactFormDialog() {
                       onChange={(e) => field.handleChange(e.target.value)}
                     />
                   </FieldContent>
+                  {field.state.meta.errors?.map((e) => {
+                    return (
+                      <FieldError key={e?.message}>{e?.message}</FieldError>
+                    );
+                  })}
                 </Field>
               )}
             </form.Field>

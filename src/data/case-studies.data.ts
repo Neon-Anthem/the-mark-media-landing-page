@@ -1,6 +1,8 @@
 export interface ICaseStudies {
   companyName: string;
   description: string;
+  imageSrc: string;
+  hasBg?: boolean;
   tag: string[];
   objective: string;
   metrics: ICaseStudiesMetrics[];
@@ -22,6 +24,7 @@ interface ICaseStudiesMetrics {
 export const CASE_STUDIES: ICaseStudies[] = [
   {
     companyName: "Marrakech",
+    imageSrc: "/brand-logos-x/marrekesh.jpg",
     description:
       "Influencer marketing campaign focused on relatable, fitness-focused, and humorous content.",
     objective: "Increase brand awareness & consistent visibility",
@@ -39,6 +42,8 @@ export const CASE_STUDIES: ICaseStudies[] = [
   },
   {
     companyName: "Sephora",
+    imageSrc: "/brand-logos-x/sephora.png",
+    hasBg: true,
     objective: "High visibility for in-store event launch",
     description:
       "Maximize reach with high-volume influencer presence, focusing on premium, relevant creators, leveraging celebrity appearances, and posting real-time content during events.",
