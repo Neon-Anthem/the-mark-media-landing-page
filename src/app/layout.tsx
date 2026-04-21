@@ -4,6 +4,7 @@ import DefaultNav from "@/components/ui/default.nav";
 import Footer from "@/components/ui/footer";
 import { fontSpaceGrotesk, geistMono, openSauceTwoFont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
@@ -40,6 +41,7 @@ export default function RootLayout({
           <Footer />
           <ContactFormDialog />
         </LenisProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
